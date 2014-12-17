@@ -7,9 +7,8 @@
 
     internal class CollectionSchemaGenerator : ISchemaGenerator
     {
-        private static readonly Type CollectionType = typeof(ConfigurationElementCollection);
-        private static readonly Type ConfigurationCollectionAttributeType = typeof(ConfigurationCollectionAttribute);
-
+        private static readonly Type CollectionType = typeof (ConfigurationElementCollection);
+        private static readonly Type ConfigurationCollectionAttributeType = typeof (ConfigurationCollectionAttribute);
         public SchemaElementType SchemaElementType => SchemaElementType.Tag;
 
         public bool CanGenerate(Type elementType)

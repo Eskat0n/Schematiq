@@ -3,19 +3,10 @@
     using System;
     using System.Configuration;
 
-    [ConfigurationCollection(typeof(BookshelfElement), AddItemName = "bookshelf", CollectionType = ConfigurationElementCollectionType.BasicMap)]
+    [ConfigurationCollection(typeof (BookshelfElement), AddItemName = "bookshelf",
+        CollectionType = ConfigurationElementCollectionType.BasicMap)]
     public class BookshelfElementCollection : ConfigurationElementCollection
     {
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new BookshelfElement();
-        }
-
-        protected override Object GetElementKey(ConfigurationElement element)
-        {
-            return ((BookshelfElement)element).Name;
-        }
-
         public override ConfigurationElementCollectionType CollectionType
             => ConfigurationElementCollectionType.BasicMap;
 
@@ -24,10 +15,7 @@
 
         public BookshelfElement this[int index]
         {
-            get
-            {
-                return (BookshelfElement)BaseGet(index);
-            }
+            get { return (BookshelfElement) BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -37,7 +25,17 @@
             }
         }
 
-        new public BookshelfElement this[string name]
-            => (BookshelfElement)BaseGet(name);
+        public new BookshelfElement this[string name]
+            => (BookshelfElement) BaseGet(name);
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new BookshelfElement();
+        }
+
+        protected override Object GetElementKey(ConfigurationElement element)
+        {
+            return ((BookshelfElement) element).Name;
+        }
     }
 }

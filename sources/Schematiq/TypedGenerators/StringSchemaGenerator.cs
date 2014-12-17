@@ -5,8 +5,7 @@
 
     public class StringSchemaGenerator : ISchemaGenerator
     {
-        private static readonly Type StringType = typeof(string);
-
+        private static readonly Type StringType = typeof (string);
         public SchemaElementType SchemaElementType => SchemaElementType.Attribute;
 
         public bool CanGenerate(Type elementType)

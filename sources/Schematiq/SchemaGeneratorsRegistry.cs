@@ -14,20 +14,10 @@
                 new IntegerSchemaGenerator(),
                 new StringSchemaGenerator(),
                 new ObjectSchemaGenerator(),
-                new CollectionSchemaGenerator(),
+                new CollectionSchemaGenerator()
             };
 
         internal static ISchemaGeneratorsRegistry Default => new SchemaGeneratorsRegistry();
-
-        public static void Register(ISchemaGenerator schemaGenerator)
-        {
-            SchemaGenerators.Add(schemaGenerator);
-        }
-
-        public static void Exclude(ISchemaGenerator schemaGenerator)
-        {
-            SchemaGenerators.Remove(schemaGenerator);
-        }
 
         public ISchemaGenerator GetSchemaGenerator(Type elementType)
         {
@@ -48,6 +38,16 @@
         public bool IsAttribute(Type elementType)
         {
             return IsSchemaElementType(elementType, SchemaElementType.Attribute);
+        }
+
+        public static void Register(ISchemaGenerator schemaGenerator)
+        {
+            SchemaGenerators.Add(schemaGenerator);
+        }
+
+        public static void Exclude(ISchemaGenerator schemaGenerator)
+        {
+            SchemaGenerators.Remove(schemaGenerator);
         }
 
         private static bool IsSchemaElementType(Type elementType, SchemaElementType schemaElementType)

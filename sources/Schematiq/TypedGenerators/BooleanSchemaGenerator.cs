@@ -5,9 +5,8 @@
 
     public class BooleanSchemaGenerator : ISchemaGenerator
     {
-        private static readonly Type BooleanType = typeof(bool);
-        private static readonly Type NullableBooleanType = typeof(bool?);
-
+        private static readonly Type BooleanType = typeof (bool);
+        private static readonly Type NullableBooleanType = typeof (bool?);
         public SchemaElementType SchemaElementType => SchemaElementType.Attribute;
 
         public bool CanGenerate(Type elementType)

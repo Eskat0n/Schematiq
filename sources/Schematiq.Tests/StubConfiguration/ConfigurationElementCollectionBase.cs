@@ -7,27 +7,15 @@
     public abstract class ConfigurationElementCollectionBase<TElement> : ConfigurationElementCollection
         where TElement : ConfigurationElement, new()
     {
-        private readonly string _elementName;
         private readonly Func<TElement, object> _keyAccessor;
 
         protected ConfigurationElementCollectionBase(string elementName, Func<TElement, object> keyAccessor)
         {
-            _elementName = elementName;
+            ElementName = elementName;
             _keyAccessor = keyAccessor;
         }
 
-        protected override string ElementName
-            => _elementName;
-
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new TElement();
-        }
-
-        protected override object GetElementKey(ConfigurationElement element)
-        {
-            return _keyAccessor(((TElement)element));
-        }
+        protected override string ElementName { get; }
 
         public override ConfigurationElementCollectionType CollectionType
             => ConfigurationElementCollectionType.BasicMap;
@@ -43,7 +31,7 @@
 
         public virtual TElement this[int index]
         {
-            get { return (TElement)BaseGet(index); }
+            get { return (TElement) BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -54,6 +42,16 @@
         }
 
         public new TElement this[string name]
-            => (TElement)BaseGet(name);
+            => (TElement) BaseGet(name);
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new TElement();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            return _keyAccessor(((TElement) element));
+        }
     }
 }

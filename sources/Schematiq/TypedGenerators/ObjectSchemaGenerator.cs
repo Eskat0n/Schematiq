@@ -10,10 +10,9 @@
 
     internal class ObjectSchemaGenerator : ISchemaGenerator
     {
-        private static readonly Type SectionType = typeof(ConfigurationSection);
-        private static readonly Type CollectionType = typeof(ConfigurationElementCollection);
-        private static readonly Type ElementType = typeof(ConfigurationElement);
-
+        private static readonly Type SectionType = typeof (ConfigurationSection);
+        private static readonly Type CollectionType = typeof (ConfigurationElementCollection);
+        private static readonly Type ElementType = typeof (ConfigurationElement);
         public SchemaElementType SchemaElementType => SchemaElementType.Tag;
 
         public bool CanGenerate(Type elementType)

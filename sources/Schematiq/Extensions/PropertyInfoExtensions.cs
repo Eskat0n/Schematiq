@@ -10,7 +10,7 @@
         [CanBeNull]
         public static string GetConfigurationPropertyName([NotNull] this PropertyInfo propertyInfo)
         {
-            var attribute = propertyInfo.GetCustomAttributes(typeof(ConfigurationPropertyAttribute), true)
+            var attribute = propertyInfo.GetCustomAttributes(typeof (ConfigurationPropertyAttribute), true)
                 .Cast<ConfigurationPropertyAttribute>()
                 .SingleOrDefault();
 

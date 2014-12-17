@@ -1,6 +1,5 @@
 ﻿namespace Schematiq.Console
 {
-    using System;
     using System.Reflection;
     using CommandLine;
     using CommandLine.Text;
@@ -8,19 +7,16 @@
     internal class Options
     {
         /// <summary>
-        /// 
         /// </summary>
         [Option('a', "assembly", Required = true, HelpText = "Input assembly file name")]
         public string AssemblyFileName { get; set; }
 
         /// <summary>
-        /// 
         /// </summary>
         [Option('t', "type", Required = true, HelpText = "Type used as root for producing XSD schema")]
         public string TypeName { get; set; }
 
         /// <summary>
-        /// 
         /// </summary>
         [Option('o', "output", Required = true, HelpText = "Output XSD schema file name")]
         public string OutputFileName { get; set; }

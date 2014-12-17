@@ -3,13 +3,14 @@
     using System;
     using System.IO;
     using System.Reflection;
+    using CommandLine;
 
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var options = new Options();
-            if (CommandLine.Parser.Default.ParseArguments(args, options) == false)
+            if (Parser.Default.ParseArguments(args, options) == false)
                 return;
 
             Assembly inputAssembly;

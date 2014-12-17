@@ -16,7 +16,7 @@
         {
             var xsdGenerator = new XsdGenerator(new XmlWriterSettings {Indent = true});
 
-            var actualXsdSchema = xsdGenerator.Generate(typeof(LibrarySection), "library");
+            var actualXsdSchema = xsdGenerator.Generate(typeof (LibrarySection), "library");
             var expectedXsdSchema = File.ReadAllText(StubSchemaFileName);
 
             Assert.AreEqual(expectedXsdSchema, actualXsdSchema);
@@ -27,7 +27,7 @@
         public void PrintGeneratedStubSchema()
         {
             var xsdGenerator = new XsdGenerator(new XmlWriterSettings {Indent = true});
-            var xsdSchema = xsdGenerator.Generate(typeof(LibrarySection), "library");
+            var xsdSchema = xsdGenerator.Generate(typeof (LibrarySection), "library");
 
             Console.WriteLine(xsdSchema);
         }

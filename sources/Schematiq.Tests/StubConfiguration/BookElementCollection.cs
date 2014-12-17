@@ -3,19 +3,10 @@ namespace Schematiq.Tests.StubConfiguration
     using System;
     using System.Configuration;
 
-    [ConfigurationCollection(typeof(BookElement), AddItemName = "book", CollectionType = ConfigurationElementCollectionType.BasicMap)]
+    [ConfigurationCollection(typeof (BookElement), AddItemName = "book",
+        CollectionType = ConfigurationElementCollectionType.BasicMap)]
     public class BookElementCollection : ConfigurationElementCollection
     {
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new BookElement();
-        }
-
-        protected override Object GetElementKey(ConfigurationElement element)
-        {
-            return ((BookElement)element).Title;
-        }
-
         public override ConfigurationElementCollectionType CollectionType
             => ConfigurationElementCollectionType.BasicMap;
 
@@ -24,10 +15,7 @@ namespace Schematiq.Tests.StubConfiguration
 
         public BookElement this[int index]
         {
-            get
-            {
-                return (BookElement)BaseGet(index);
-            }
+            get { return (BookElement) BaseGet(index); }
             set
             {
                 if (BaseGet(index) != null)
@@ -37,7 +25,17 @@ namespace Schematiq.Tests.StubConfiguration
             }
         }
 
-        new public BookElement this[string name]
-            => (BookElement)BaseGet(name);
+        public new BookElement this[string name]
+            => (BookElement) BaseGet(name);
+
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new BookElement();
+        }
+
+        protected override Object GetElementKey(ConfigurationElement element)
+        {
+            return ((BookElement) element).Title;
+        }
     }
 }
