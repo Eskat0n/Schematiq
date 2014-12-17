@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Reflection;
+    using System.Xml;
     using CommandLine;
 
     internal class Program
@@ -17,11 +18,11 @@
             Type rootElementType;
 
             if (LoadInputAssembly(options.AssemblyFileName, out inputAssembly) == false ||
-                LoadRootElementType(inputAssembly, options.TypeName, out rootElementType) == false)
+                LoadRootElementType(inputAssembly, options.RootElementTypeName, out rootElementType) == false)
                 return;
 
-            var xsdGenerator = new XsdGenerator();
-            var xsdSchema = xsdGenerator.Generate(rootElementType);
+            var xsdGenerator = new XsdGenerator(new XmlWriterSettings {Indent = options.FormatOutput});
+            var xsdSchema = xsdGenerator.Generate(rootElementType, options.RootElementName);
 
             File.WriteAllText(options.OutputFileName, xsdSchema);
         }

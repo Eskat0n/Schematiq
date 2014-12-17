@@ -13,13 +13,23 @@
 
         /// <summary>
         /// </summary>
-        [Option('t', "type", Required = true, HelpText = "Type used as root for producing XSD schema")]
-        public string TypeName { get; set; }
+        [Option('t', "root-type", Required = true, HelpText = "Type used as root for producing XML schema")]
+        public string RootElementTypeName { get; set; }
 
         /// <summary>
         /// </summary>
-        [Option('o', "output", Required = true, HelpText = "Output XSD schema file name")]
+        [Option('r', "root-name", Required = true, HelpText = "Element name for root")]
+        public string RootElementName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [Option('o', "output", Required = true, HelpText = "Output XML schema file name (.xsd extension is recommended)")]
         public string OutputFileName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [Option('f', "format", DefaultValue = false, HelpText = "Format produced XML schema")]
+        public bool FormatOutput { get; set; }
 
         [HelpOption]
         public string GetHelpText()
@@ -32,7 +42,7 @@
                 AddDashesToOption = true
             };
 
-            helpText.AddPreOptionsLine("Usage: Schematiq.exe -a <assembly_filename> -t <type_name> -o <xsd_filename>");
+            helpText.AddPreOptionsLine("Usage: Schematiq.exe -a <assembly_filename> -t <type_name> -r <root_element_name> -o <xsd_filename>");
             helpText.AddOptions(this);
 
             return helpText;
